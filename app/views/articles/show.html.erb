@@ -1,3 +1,7 @@
 <h1> Showing Article </h1>
 <p> Title: <%= @article.title %> </p>
 <p> Description: <%= @article.description %> ID: <%= @article.id %></p>
+
+<%#= link_to "Edit this article", edit_article_path(@article) %>
+
+<%= render 'articles/footer' %>

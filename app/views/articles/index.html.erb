@@ -1,0 +1,24 @@
+<h1> Articles Page - Welcome </h1>
+<p><%= link_to "Create New Article", new_article_path %>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Link</th>
+  </tr>
+  <% @articles.each do |a| %>
+    <tr>
+      <td><%= a.id %></td>
+      <td><%= a.title %></td>
+      <td><%= a.description %></td>
+      <td><%= link_to "Edit", edit_article_path(a) %></td>
+      <td><%= link_to "Show", article_path(a) %></td>
+      <%# we have to tell rails that we are going to do a
+        # delete since it is similar parth to 'show'.
+        # also want to have user confirm
+      %>
+      <td><%= link_to "Delete", article_path(a), method: :delete, data: {confirm: "Are you sure you want to delete?"} %></td>
+    </tr>
+  <% end %>
+</table>
