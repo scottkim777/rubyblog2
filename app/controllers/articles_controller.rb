@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  # call set_article method before actions, only for actions
+  # specified by only:
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
+
   def index
     @articles = Article.all
   end
@@ -8,14 +12,14 @@ class ArticlesController < ApplicationController
 
   #edit
   def edit
-    @article = Article.find(params[:id])
+    # @article = Article.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
     flash[:notice] = "Record Not Found"
     redirect_to new_article_path()
   end
 
   def update
-    @article = Article.find(params[:id])
+    # @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was updated"
       redirect_to article_path(@article)
@@ -25,7 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    # @article = Article.find(params[:id])
     if @article.destroy
       flash[:notice] = "Article deleted"
       redirect_to articles_path
@@ -51,10 +55,13 @@ class ArticlesController < ApplicationController
 
   #show
   def show
-    @article = Article.find(params[:id])
+    #@article = Article.find(params[:id])
   end
 
   private
+  def set_article
+    @article = Article.find(params[:id])
+  end
   def article_params
     params.require(:article).permit(:title, :description)
   end
