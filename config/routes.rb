@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#home'
   get 'about', to: 'welcome#about'
 
+  #root 'articles#index'
   resources :articles
   # get 'article', to: 'article#index'
   #get 'welcome/home', to: 'welcome#home'

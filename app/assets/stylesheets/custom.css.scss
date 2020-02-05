@@ -1,11 +1,36 @@
 @import 'bootstrap/dist/css/bootstrap';
 
-
-
 #logo{
   float: left;
   font-size: 1.3em;
   text-transform: uppercase;
   letter-spacing: -1px;
   font-weight: bold;
+}
+//.navbar {
+//background-color: #FDF6EA !important;
+//}
+
+.alert-title{
+  font-size: 1.0em;
+}
+.nav-link{
+  font-size: 1.0em;
+}
+
+.nav-link:hover{
+  font-weight: bold;
+}
+
+.jumbotron{
+  background-image: asset-url('back3.jpg');
+  background-size:  cover;
+  height: 550px;
+}
+
+.jumbotron h1{
+  color: #fff;
+}
+.text-welcome{
+  color: white;
 }

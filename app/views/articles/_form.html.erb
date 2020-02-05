@@ -1,22 +1,32 @@
-<% if @article.errors.any? %>
-  <h2> Errors encountered: </h2>
-  <% @article.errors.full_messages.each do |msg| %>
-    <ul>
-      <li><%= msg %></li>
-    </ul>
-  <% end %>
-<% end %>
+<%# we pass in our articles object to the errors partial so that we
+  # reuse it
+%>
+<%= render 'shared/errors', obj: @article %>
 
-<%= form_for @article do |f| %>
-   <p>
-     <%= f.label :title %>
-     <%= f.text_field :title %>
-   </p>
-   <p>
-     <%= f.label :description %>
-     <%= f.text_area :description %>
-   </p>
-   <p>
-     <%= f.submit %>
-   </p>
-<% end %>
+<%#div class='row'%>
+  <%#div class='col-xs-12'%>
+    <%= form_for @article do |f| %>
+       <div class="form-group row">
+         <div class="col-sm-2 col-form-label">
+           <%= f.label :title %>
+         </div>
+         <div class="col-sm-10">
+           <%= f.text_field :title, class: "form-control", placeholder: "Title of Article", autofocus: true %>
+         </div>
+       </div>
+       <div class="form-group row">
+         <div class="col-sm-2 col-form-label">
+           <%= f.label :description %>
+         </div>
+         <div class="col-sm-10">
+           <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Description" %>
+         </div>
+       </div>
+       <div class="form-group row">
+           <div class="col-sm-10">
+             <%= f.submit class: "btn btn-primary"%>
+           </div>
+     </div>
+    <% end %>
+  <%#/div%>
+ <%#/div%>

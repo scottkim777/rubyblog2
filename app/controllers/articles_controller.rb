@@ -14,14 +14,14 @@ class ArticlesController < ApplicationController
   def edit
     # @article = Article.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
-    flash[:notice] = "Record Not Found"
+    flash[:danger] = "Record Not Found"
     redirect_to new_article_path()
   end
 
   def update
     # @article = Article.find(params[:id])
     if @article.update(article_params)
-      flash[:notice] = "Article was updated"
+      flash[:success] = "Article was updated"
       redirect_to article_path(@article)
     else
       render :edit
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
   def destroy
     # @article = Article.find(params[:id])
     if @article.destroy
-      flash[:notice] = "Article deleted"
+      flash[:warning] = "Article deleted"
       redirect_to articles_path
     end
   end
@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
     #redirect_to article_path(@article)
     if @article.save
       # display message
-      flash[:notice] = "Article was created!"
+      flash[:success] = "Article was created!"
       redirect_to article_path(@article)
     else
       render :new

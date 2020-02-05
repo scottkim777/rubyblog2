@@ -1,5 +1,14 @@
+<%#  &#215 is the 'x' character.
+  #  close the message by allowing the user to click on the 'x'
+  # the type of message that gets displayed depends on the name passed
+  # from the controller e.g., flash[:success] wiill result in class
+  # alert alert-success
+%>
+<div class="col-sm-8 col-sm-offset-2">
 <% flash.each do |name, msg| %>
-  <ul>
-    <li><%= msg %></li>
-  </ul>
+    <div class='alert alert-<%="#{name}" %>'>
+      <a href="#" class="close" data-dismiss="alert">&#215;</a>
+      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    </div>
 <% end %>
+</div>
