@@ -1,22 +1,31 @@
 <h1> Articles Page - Welcome </h1>
 <p><%= link_to "Create New Article", new_article_path %></p>
 
+<table class="main_table">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>UserID</th>
+    <th>User</th>
+  </tr>
+
   <% @articles.each do |a| %>
 
-      <div class="form-group">
-      <div class="col-sm-12">
-        <div class="well well-lg">
-          <div class="article-title">
-            <%= link_to a.title, article_path(a) %>
-          </div>
-          <div class="article-body">
-            <%= truncate(a.description, length: 100) %>
-          </div>
-          <div class="article-actions">
-            <%= link_to "Delete", article_path(a), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
-          </div>
-        </div>
-
-      </div>
-    </div>
+     <tr>
+       <td><%= link_to a.id, article_path(a) %></td>
+       <td><%= a.title %></td>
+       <td><%= truncate(a.description, length: 100) %></td>
+       <td><%= a.user_id %></td>
+       <% if a.user.nil? %>
+          <td>N/A</td>
+       <% else %>
+          <td><%= a.user.username %></td>
+       <% end %>
+       <td><%= link_to "Delete", article_path(a), class: "btn btn-danger btn-sm", method: :delete,
+       data: {confirm: "Are you sure you want to delete?"} %></td>
+       <td><%= link_to "Edit", edit_article_path(a), class: "btn btn-success btn-sm" %></td>
+     </tr>
   <% end %>
+
+</table>
