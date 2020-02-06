@@ -40,6 +40,9 @@ class ArticlesController < ApplicationController
   def create
     #render plain: params[:article].inspect
     # whitelist the
+
+    # for debugging we just enter debugger without the comment
+    # debugger
     @article = Article.new(article_params)
     #@article.save  # at this point, article is saved but
                    #nothing happens, so we need to show

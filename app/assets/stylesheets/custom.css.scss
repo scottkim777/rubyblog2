@@ -7,10 +7,17 @@
   letter-spacing: -1px;
   font-weight: bold;
 }
+.well{
+  background-color: lightgray;
+}
 //.navbar {
 //background-color: #FDF6EA !important;
 //}
-
+.main_table, th, td{
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 1.0em;
+}
 .alert-title{
   font-size: 1.0em;
 }
