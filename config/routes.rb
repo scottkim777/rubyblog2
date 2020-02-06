@@ -5,6 +5,16 @@ Rails.application.routes.draw do
 
   #root 'articles#index'
   resources :articles
+
+  # we want to create appath so that /signup will take the users
+  # to the new action.  To create the rest, we can simply display
+  # resources :users, but exclude the new action.   Or we can
+  # handle the post request as shown below.
+  # post 'users', to 'users#create'
+  # 
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
+
   # get 'article', to: 'article#index'
   #get 'welcome/home', to: 'welcome#home'
   #get 'welcome/about', to: 'welcome#about'
