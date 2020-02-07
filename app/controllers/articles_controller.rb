@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   # call set_article method before actions, only for actions
   # specified by only:
   before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_owner, only: [:edit, :update, :destroy]
 
   #alias_method :select_for_count_with_relation, :select_for_count
   #remove_method :select_for_count
@@ -79,5 +81,11 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :description)
   end
 
+  def require_owner
+    if current_user != @article.user
+      flash[:danger] = "You can only edit you own"
+      redirect_to root_path
+    end
+  end
 
 end

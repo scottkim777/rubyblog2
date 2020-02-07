@@ -11,9 +11,14 @@ Rails.application.routes.draw do
   # resources :users, but exclude the new action.   Or we can
   # handle the post request as shown below.
   # post 'users', to 'users#create'
-  # 
+  #
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
+
+  # login
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
   # get 'article', to: 'article#index'
   #get 'welcome/home', to: 'welcome#home'

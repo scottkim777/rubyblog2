@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_owner, only: [:edit, :update]
+
   def index
     #@user = User.all
     @user = User.paginate(page: params[:page], per_page: 3)
@@ -43,4 +45,13 @@ private
     # permit
     params.require(:user).permit(:username,:email, :password)
   end
+
+  def require_owner
+    @user = User.find(params[:id])
+    if current_user != @user
+      flash[:danger] = "You can onl edit your account"
+      redirect_to root_path
+    end
+  end
+
 end

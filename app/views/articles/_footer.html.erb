@@ -1,12 +1,18 @@
 <%# only show the back button if current page is  not
     the index page
 %>
+<div class="row">
+  <div class ="well col-sm-10">
 <div class="article-actions">
 <% if current_page?(action: 'index') == false %>
-  <%= link_to "Back to Articles", articles_path %> |
+  <%= link_to "Back to Articles", articles_path,
+      class: "btn btn-xs btn-secondary" %>
 <% end %>
-
+<hr>
 <% if current_page?(action: 'show') == true %>
-   <%=link_to "Edit this article", edit_article_path(@article), class: "btn btn-xs btn-success" %>
+   <%= link_to "Edit this article", edit_article_path(@article),
+   class: "btn btn-xs btn-success" if logged_in? && current_user == @article.user %>
 <% end %>
+</div>
+</div>
 </div>
