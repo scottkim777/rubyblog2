@@ -1,0 +1,11 @@
+<h2> Users </h2>
+<% @user.each do |u| %>
+  <ul class="listing">
+    <div class="row">
+      <div class="well col-md-6">
+        Name: <%= link_to u.username, user_path(u) %><hr>
+        <%= pluralize(u.articles.count, "article") if u.articles %>
+      </div>
+    </div>
+  </ul>
+<% end %>

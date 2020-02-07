@@ -1,0 +1,51 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="show-user" style="margin-top:10px">
+
+   <h3>User: <%= @user.username %>
+     <small><a href="#" title="User Info" data-toggle="popover"
+     data-trigger="hover" data-content="User iD: <%= @user.id %>">[ID]</a></small>
+
+   </h3><hr>
+  <h4>Email: <%= @user.email %></h4>
+</div>
+<br><hr>
+<strong> Articles created: </strong>
+<!--style="font-size:30px">User:</> <%= @user.username %> -->
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created</th>
+      <th scope="col">Updated</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.articles.each do |a| %>
+      <tr>
+        <td><a href="#" title="header" data-toggle="popover" data-trigger="hover"
+            data-content="content"><%= link_to a.id, article_path(a)%></a></td>
+        <td><%= a.title %></td>
+        <td><%= a.description %></td>
+        <td><%= time_ago_in_words(a.created_at) %></td>
+        <td><%= time_ago_in_words(a.updated_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--div class="container"-->
+
+<!--/div-->
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
