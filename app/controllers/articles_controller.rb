@@ -3,8 +3,14 @@ class ArticlesController < ApplicationController
   # specified by only:
   before_action :set_article, only: [:edit, :update, :show, :destroy]
 
+  #alias_method :select_for_count_with_relation, :select_for_count
+  #remove_method :select_for_count
+
   def index
-    @articles = Article.all
+    #@articles = Article.all
+    #@articles = Article.paginate(page: params[:page]) #, per_page: 5)
+    @articles = Article.paginate(page: params[:page], per_page: 5)
+
   end
   def new
     @article = Article.new
@@ -45,6 +51,9 @@ class ArticlesController < ApplicationController
     # for debugging we just enter debugger without the comment
     # debugger
     @article = Article.new(article_params)
+    # temp
+    #@article.user_id = 7
+
     #@article.save  # at this point, article is saved but
                    #nothing happens, so we need to show
     #redirect_to article_path(@article)

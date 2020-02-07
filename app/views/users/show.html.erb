@@ -12,7 +12,10 @@
    </h3><hr>
   <h4>Email: <%= @user.email %></h4>
 </div>
-<br><hr>
+<hr>
+<div class="flickr_pagination">
+    <%= will_paginate @articles %>
+</div>
 <strong> Articles created: </strong>
 <!--style="font-size:30px">User:</> <%= @user.username %> -->
 <table class="table">
@@ -27,10 +30,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @user.articles.each do |a| %>
+    <%# @user.articles.each do |a| %>
+    <% @articles.each do |a| %>
       <tr>
-        <td><a href="#" title="header" data-toggle="popover" data-trigger="hover"
-            data-content="content"><%= link_to a.id, article_path(a)%></a></td>
+        <td><%= link_to a.id, article_path(a)%></td>
         <td><%= a.title %></td>
         <td><%= a.description %></td>
         <td><%= time_ago_in_words(a.created_at) %></td>
