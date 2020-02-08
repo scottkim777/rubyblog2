@@ -53,6 +53,7 @@ class ArticlesController < ApplicationController
     # for debugging we just enter debugger without the comment
     # debugger
     @article = Article.new(article_params)
+    @article.user = current_user
     # temp
     #@article.user_id = 7
 

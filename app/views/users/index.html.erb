@@ -6,8 +6,8 @@
 <% @user.each do |u| %>
   <ul class="listing">
     <div class="row">
-      <div class="well col-md-6">
-        Name: <%= link_to u.username, user_path(u) %><hr>
+      <div class="well col-md-10">
+        Name: <%= link_to u.username, user_path(u) %>, 
         <%= pluralize(u.articles.count, "article") if u.articles %>
       </div>
     </div>

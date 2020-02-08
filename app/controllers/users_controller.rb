@@ -49,7 +49,7 @@ private
   def require_owner
     @user = User.find(params[:id])
     if current_user != @user
-      flash[:danger] = "You can onl edit your account"
+      flash[:danger] = "You can only edit your account"
       redirect_to root_path
     end
   end

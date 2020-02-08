@@ -1,9 +1,11 @@
 <h2>Title: <%= @article.title %> </h2>
-<div class="well col-sm-8 col-sm-offset-2">
-  <h4 class="center"><strong>Description:</strong></h4>
-  <hr>
-  <%= simple_format(@article.description) %>
+<div class="row">
+  <div class="well col-sm-8 col-sm-offset-0">
+    <h4 class="center"><strong>Description:</strong></h4>
+    <hr>
+    <%= simple_format(@article.description) %>
 
-<%#= link_to "Edit this article", edit_article_path(@article) %>
+  <%#= link_to "Edit this article", edit_article_path(@article) %>
+  </div>
 </div>
 <%= render 'articles/footer' %>
