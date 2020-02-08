@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_154320) do
+ActiveRecord::Schema.define(version: 2020_02_08_222910) do
 
   create_table "articlers", force: :cascade do |t|
   end
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_154320) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.boolean "admin", default: false
   end
 
 end

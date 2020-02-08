@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_owner, only: [:edit, :update]
+  before_action :require_user
 
   def index
     #@user = User.all
@@ -10,9 +11,11 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
+    # set this user as being logged in after signing up
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Welcome to Scott's Blog #{@user.username}"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     #@articles = @user.articles
+
     @articles = @user.articles.paginate(page: params[:page], per_page: 3)
   end
 
