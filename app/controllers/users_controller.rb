@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_owner, only: [:edit, :update]
-  before_action :require_user
+  before_action :require_owner, only: [:edit, :update, :destroy]
+  before_action :require_user, except: [:new, :create]
+  before_action :require_admin, only: [:destroy]
 
   def index
     #@user = User.all
@@ -28,6 +29,13 @@ class UsersController < ApplicationController
     @articles = @user.articles.paginate(page: params[:page], per_page: 3)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:danger] = "User and all articles have been deleted"
+    redirect_to users_path
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -52,8 +60,15 @@ private
 
   def require_owner
     @user = User.find(params[:id])
-    if current_user != @user
+    if current_user != @user and !current_user.admin?
       flash[:danger] = "You can only edit your account"
+      redirect_to root_path
+    end
+  end
+
+  def require_admin
+    if logged_in? and !current_user.admin?
+      flash[:danger] = "Only admin user can delete"
       redirect_to root_path
     end
   end

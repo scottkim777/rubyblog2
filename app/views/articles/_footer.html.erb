@@ -10,7 +10,7 @@
       <% end %>
       <% if current_page?(action: 'show') == true %>
          <%= link_to "Edit this article", edit_article_path(@article),
-         class: "btn btn-xs btn-success" if logged_in? && current_user == @article.user %>
+         class: "btn btn-xs btn-success" if logged_in? && (current_user == @article.user || current_user.admin?) %>
       <% end %>
     </div>
    </div>
