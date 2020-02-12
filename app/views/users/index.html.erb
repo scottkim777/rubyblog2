@@ -6,13 +6,14 @@
 <% @user.each do |u| %>
   <ul class="listing">
     <div class="row">
-      <div class="well col-md-10">
+      <div class="well col-md-8">
         Name: <%= link_to u.username, user_path(u) %>,
         <%= pluralize(u.articles.count, "article") if u.articles %>
       </div>
-      <% if logged_in? and current_user.admin? %>
-          <li><%= link_to "Delete User", user_path(u), method: :delete,
-             data: { confirm: "Are you sure you want to delete user and all articles?"} %>
+      <% if (logged_in? and current_user.admin?) and current_user.id != u.id%>
+          <li>&nbsp<%= link_to "Delete User", user_path(u), method: :delete,
+             data: { confirm: "Are you sure you want to delete user and all articles?"},
+             class: "btn btn-danger" %>
           </li>
       <% end %>
 

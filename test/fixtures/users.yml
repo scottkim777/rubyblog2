@@ -1,0 +1,5 @@
+one:
+  username: johndoe
+  email: johndoe@email.com
+  password_digest: password
+  admin: false

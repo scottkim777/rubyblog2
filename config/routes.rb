@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  resources :categories
+
   # get 'article', to: 'article#index'
   #get 'welcome/home', to: 'welcome#home'
   #get 'welcome/about', to: 'welcome#about'
